@@ -1,0 +1,294 @@
+@import "tailwindcss";
+
+@theme {
+  /* Golf Brand Colors */
+  --color-golf-navy: #1a2a3a;
+  --color-golf-navy-light: #243444;
+  --color-golf-gold: #c9a962;
+  --color-golf-gold-light: #d4b87a;
+  --color-golf-cream: #f5f3ef;
+  --color-golf-charcoal: #2d3748;
+  --color-golf-white: #ffffff;
+  --color-golf-green: #2d5a3d;
+  --color-golf-green-light: #3d7a5d;
+
+  /* Era-specific accent colors */
+  --color-era-pioneer: #8b7355;
+  --color-era-teacher: #4a6741;
+  --color-era-breakthrough: #2d4a5e;
+  --color-era-champions: #6b4c3a;
+  --color-era-renaissance: #3d5a4a;
+
+  /* Typography */
+  --font-family-playfair: var(--font-playfair), Georgia, serif;
+  --font-family-inter: var(--font-inter), system-ui, sans-serif;
+
+  /* Spacing for cinematic sections */
+  --section-padding: clamp(4rem, 10vh, 8rem);
+  --chapter-height: 100vh;
+}
+
+:root {
+  --background: var(--color-golf-cream);
+  --foreground: var(--color-golf-navy);
+  --accent: var(--color-golf-gold);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: var(--color-golf-navy);
+    --foreground: var(--color-golf-cream);
+  }
+}
+
+/* Base styles */
+html {
+  scroll-behavior: auto; /* Lenis handles smooth scroll */
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-inter);
+  overflow-x: hidden;
+}
+
+/* Lenis smooth scroll */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Typography utilities */
+.text-display {
+  font-family: var(--font-playfair);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.text-heading {
+  font-family: var(--font-playfair);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.text-body {
+  font-family: var(--font-inter);
+  line-height: 1.7;
+}
+
+/* Chapter section base */
+.chapter-section {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Parallax image container */
+.parallax-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.parallax-image {
+  position: absolute;
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  will-change: transform;
+}
+
+/* Pinned section for scroll animations */
+.pinned-wrapper {
+  position: relative;
+  height: 300vh;
+}
+
+.pinned-content {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Horizontal scroll section */
+.horizontal-scroll-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.horizontal-scroll-container {
+  display: flex;
+  gap: 2rem;
+  will-change: transform;
+}
+
+/* Cinematic overlays */
+.overlay-gradient-bottom {
+  background: linear-gradient(to top, rgba(26, 42, 58, 0.9) 0%, transparent 100%);
+}
+
+.overlay-gradient-full {
+  background: linear-gradient(
+    to bottom,
+    rgba(26, 42, 58, 0.3) 0%,
+    rgba(26, 42, 58, 0.1) 40%,
+    rgba(26, 42, 58, 0.6) 100%
+  );
+}
+
+/* Text reveal animation base */
+.text-reveal {
+  clip-path: inset(0 0 100% 0);
+}
+
+.text-reveal.revealed {
+  clip-path: inset(0 0 0 0);
+}
+
+/* Era-specific theming */
+[data-era="prologue"] {
+  --era-accent: var(--color-golf-cream);
+  --era-bg: var(--color-golf-navy);
+}
+
+[data-era="pioneer"] {
+  --era-accent: var(--color-era-pioneer);
+  --era-bg: #f8f5f0;
+}
+
+[data-era="teacher"] {
+  --era-accent: var(--color-era-teacher);
+  --era-bg: var(--color-golf-cream);
+}
+
+[data-era="breakthrough"] {
+  --era-accent: var(--color-era-breakthrough);
+  --era-bg: var(--color-golf-navy);
+}
+
+[data-era="champions"] {
+  --era-accent: var(--color-era-champions);
+  --era-bg: #faf8f5;
+}
+
+[data-era="renaissance"] {
+  --era-accent: var(--color-era-renaissance);
+  --era-bg: var(--color-golf-cream);
+}
+
+[data-era="epilogue"] {
+  --era-accent: var(--color-golf-gold);
+  --era-bg: var(--color-golf-navy);
+}
+
+/* Scroll progress indicator */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--color-golf-gold);
+  transform-origin: left;
+  z-index: 1000;
+}
+
+/* Floating nav */
+.floating-nav {
+  position: fixed;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+}
+
+.nav-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--color-golf-gold);
+  background: transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.nav-dot.active {
+  background: var(--color-golf-gold);
+  transform: scale(1.2);
+}
+
+.nav-dot:hover {
+  background: rgba(201, 169, 98, 0.5);
+}
+
+/* Ken Burns effect for historic photos */
+@keyframes kenBurns {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.1) translate(-2%, -2%);
+  }
+}
+
+.ken-burns {
+  animation: kenBurns 20s ease-in-out infinite alternate;
+}
+
+/* Loading state */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--color-golf-navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-golf-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-golf-gold);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-golf-gold-light);
+}
+
+/* Selection */
+::selection {
+  background: var(--color-golf-gold);
+  color: var(--color-golf-navy);
+}
+
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid var(--color-golf-gold);
+  outline-offset: 2px;
+}
