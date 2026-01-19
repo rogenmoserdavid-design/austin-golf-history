@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, MapPin, Calendar, Users, Award } from "lucide-react";
+import { Breadcrumb } from "@/components/core";
 
 export const metadata = {
   title: "Barton Creek Resort - Four Championship Courses | Austin Golf History",
@@ -106,6 +107,25 @@ const courses: CourseDetail[] = [
 export default function BartonCreekPage() {
   return (
     <main className="min-h-screen bg-golf-navy">
+      {/* Navigation */}
+      <div className="fixed top-6 left-6 z-50 flex flex-col gap-2">
+        <Link
+          href="/clubs"
+          className="flex items-center gap-2 px-4 py-2 bg-golf-navy/90 backdrop-blur-sm text-golf-cream rounded-full hover:bg-golf-navy transition-all group focus:outline-none focus-visible:ring-2 focus-visible:ring-golf-gold"
+          aria-label="Back to all clubs"
+        >
+          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" aria-hidden="true" />
+          <span className="text-sm font-medium">Back to Clubs</span>
+        </Link>
+        <Breadcrumb
+          items={[
+            { label: "Clubs", href: "/clubs" },
+            { label: "Barton Creek Resort" },
+          ]}
+          className="hidden md:flex bg-golf-navy/90 backdrop-blur-sm px-4 py-2 rounded-full"
+        />
+      </div>
+
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Background Image */}

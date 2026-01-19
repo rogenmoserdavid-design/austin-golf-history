@@ -3,6 +3,7 @@
 import { useRef, useEffect, ReactNode } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -30,9 +31,15 @@ export function AnimatedText({
   triggerStart = "top 85%",
 }: AnimatedTextProps) {
   const ref = useRef<HTMLElement>(null);
+  const prefersReducedMotion = useReducedMotion();
 
-  // Split text into animated units
+  // Split text into animated units (only when not reduced motion)
   const splitText = () => {
+    // If reduced motion is preferred, just return the children as-is
+    if (prefersReducedMotion) {
+      return children;
+    }
+
     if (animation === "chars") {
       return children.split("").map((char, i) => (
         <span key={i} className="char inline-block" style={{ display: char === " " ? "inline" : "inline-block" }}>
@@ -61,6 +68,8 @@ export function AnimatedText({
   };
 
   useEffect(() => {
+    // Skip all animations if user prefers reduced motion
+    if (prefersReducedMotion) return;
     if (!ref.current) return;
 
     const ctx = gsap.context(() => {
@@ -119,12 +128,12 @@ export function AnimatedText({
     }, ref);
 
     return () => ctx.revert();
-  }, [animation, stagger, duration, delay, triggerStart]);
+  }, [animation, stagger, duration, delay, triggerStart, prefersReducedMotion]);
 
   return (
     <Component
       ref={ref as React.RefObject<HTMLHeadingElement & HTMLParagraphElement & HTMLSpanElement>}
-      className={`${className} ${animation !== "fade" ? "overflow-hidden" : ""}`}
+      className={`${className} ${animation !== "fade" && !prefersReducedMotion ? "overflow-hidden" : ""}`}
     >
       {splitText()}
     </Component>
@@ -194,8 +203,11 @@ interface QuoteProps {
 
 export function AnimatedQuote({ children, author, className = "" }: QuoteProps) {
   const ref = useRef<HTMLQuoteElement>(null);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
+    // Skip animations if user prefers reduced motion
+    if (prefersReducedMotion) return;
     if (!ref.current) return;
 
     const ctx = gsap.context(() => {
@@ -238,18 +250,25 @@ export function AnimatedQuote({ children, author, className = "" }: QuoteProps) 
     }, ref);
 
     return () => ctx.revert();
-  }, []);
+  }, [prefersReducedMotion]);
 
   return (
-    <blockquote ref={ref} className={`relative ${className}`}>
-      <span className="quote-mark absolute -left-8 -top-4 text-8xl font-playfair text-golf-gold opacity-0">
+    <blockquote
+      ref={ref}
+      className={`relative border-l-4 border-golf-gold pl-6 py-4 bg-golf-cream/5 ${className}`}
+    >
+      <span
+        className={`quote-mark absolute -left-2 -top-4 text-8xl font-playfair text-golf-gold ${
+          prefersReducedMotion ? "opacity-20" : "opacity-0"
+        }`}
+      >
         &ldquo;
       </span>
       <p className="text-2xl md:text-3xl lg:text-4xl font-playfair italic text-golf-cream/90 leading-relaxed">
         {children}
       </p>
       {author && (
-        <footer className="mt-6 text-lg text-golf-gold">— {author}</footer>
+        <footer className="mt-6 text-lg text-golf-gold font-medium">— {author}</footer>
       )}
     </blockquote>
   );

@@ -121,6 +121,54 @@ npm run lint     # ESLint check
 
 ---
 
+## Accessibility Features
+
+- **Reduced Motion Support:** `useReducedMotion` hook respects user preferences (disables animations when `prefers-reduced-motion: reduce`)
+- **ARIA Labels:** Navigation components include proper aria-label attributes for screen readers
+- **Image Error Handling:** ParallaxImage includes onError handlers with fallback gradient
+- **Semantic HTML:** Proper heading hierarchy, landmark regions, accessible navigation
+
+---
+
+## Navigation System
+
+**Breadcrumbs:** All 5 club pages include breadcrumb navigation (Home > Clubs > [Club Name])
+
+**Navigation Config:** Centralized in `src/lib/content/navigation.ts`:
+- Single source of truth for chapters and clubs
+- Used by Header, FloatingNav, and Breadcrumb components
+
+---
+
+## Lenis Smooth Scroll
+
+**Critical:** Club pages require `ScrollProvider` to manage Lenis lifecycle.
+
+**Problem:** Lenis classes persisted across route transitions, blocking scroll on club pages.
+
+**Solution:** Created `src/components/providers/ScrollProvider.tsx` that:
+- Cleans up `lenis`, `lenis-smooth`, `lenis-stopped` classes on route change
+- Resets scroll position on navigation
+- Wraps entire app in layout.tsx
+
+---
+
+## Recent Enhancements (Jan 2026)
+
+**Stats Grid Polish:**
+- Background containers with subtle borders
+- Icons in circular backgrounds (w-14 h-14)
+- Hover effects with border color change
+- Consistent spacing and alignment
+
+**Component Architecture:**
+- `src/hooks/useReducedMotion.ts` - accessibility hook
+- `src/components/providers/ScrollProvider.tsx` - Lenis lifecycle
+- `src/components/core/Breadcrumb.tsx` - navigation breadcrumbs
+- `src/lib/content/navigation.ts` - centralized nav config
+
+---
+
 ## Next Steps
 
 - [ ] Deploy to Vercel (history.mackenzieclub.com)

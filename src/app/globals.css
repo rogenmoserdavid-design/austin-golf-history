@@ -67,7 +67,7 @@ html.lenis, html.lenis body {
 }
 
 .lenis.lenis-stopped {
-  overflow: hidden;
+  /* Removed overflow: hidden - was blocking scroll on club pages */
 }
 
 .lenis.lenis-smooth iframe {
@@ -287,8 +287,239 @@ html.lenis, html.lenis body {
   color: var(--color-golf-navy);
 }
 
-/* Focus visible */
+/* Focus visible - enhanced for accessibility */
 :focus-visible {
-  outline: 2px solid var(--color-golf-gold);
-  outline-offset: 2px;
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-golf-gold);
+}
+
+/* Focus ring utilities for buttons and interactive elements */
+.focus-ring {
+  outline: none;
+}
+
+.focus-ring:focus-visible {
+  box-shadow: 0 0 0 2px var(--color-golf-navy), 0 0 0 4px var(--color-golf-gold);
+}
+
+/* ============================================
+   BUTTON VARIANTS
+   ============================================ */
+
+/* Primary Button - Gold background */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-golf-navy);
+  background-color: var(--color-golf-gold);
+  border: 2px solid var(--color-golf-gold);
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-golf-gold-light);
+  border-color: var(--color-golf-gold-light);
+}
+
+.btn-primary:focus-visible {
+  box-shadow: 0 0 0 2px var(--color-golf-navy), 0 0 0 4px var(--color-golf-gold);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Secondary Button - Outline style */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-golf-gold);
+  background-color: transparent;
+  border: 2px solid var(--color-golf-gold);
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-golf-gold);
+  color: var(--color-golf-navy);
+}
+
+.btn-secondary:focus-visible {
+  box-shadow: 0 0 0 2px var(--color-golf-navy), 0 0 0 4px var(--color-golf-gold);
+}
+
+/* Ghost Button - Minimal style */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-golf-gold);
+  background-color: transparent;
+  border: none;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-ghost:hover {
+  color: var(--color-golf-gold-light);
+}
+
+.btn-ghost:focus-visible {
+  box-shadow: 0 0 0 2px var(--color-golf-gold);
+  border-radius: 4px;
+}
+
+/* ============================================
+   STANDARDIZED SPACING
+   ============================================ */
+
+/* Section spacing utilities */
+.section-padding-sm {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.section-padding-md {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.section-padding-lg {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+
+@media (max-width: 768px) {
+  .section-padding-sm {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .section-padding-md {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .section-padding-lg {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+/* ============================================
+   OVERLAY GRADIENTS (Standardized)
+   ============================================ */
+
+.overlay-dark {
+  background: linear-gradient(
+    to bottom,
+    rgba(26, 42, 58, 0.6) 0%,
+    rgba(26, 42, 58, 0.3) 50%,
+    transparent 100%
+  );
+}
+
+.overlay-dark-bottom {
+  background: linear-gradient(
+    to top,
+    rgba(26, 42, 58, 0.9) 0%,
+    rgba(26, 42, 58, 0.5) 40%,
+    transparent 100%
+  );
+}
+
+.overlay-light {
+  background: linear-gradient(
+    to bottom,
+    rgba(245, 243, 239, 0.8) 0%,
+    transparent 100%
+  );
+}
+
+/* ============================================
+   PROSE / LINE LENGTH CONSTRAINTS
+   ============================================ */
+
+.prose-constrained {
+  max-width: 65ch;
+}
+
+.prose-wide {
+  max-width: 75ch;
+}
+
+/* ============================================
+   REDUCED MOTION SUPPORT
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .ken-burns {
+    animation: none;
+  }
+
+  .parallax-image {
+    height: 100%;
+    transform: none !important;
+  }
+}
+
+/* ============================================
+   LOADING SKELETON
+   ============================================ */
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-golf-navy) 25%,
+    var(--color-golf-navy-light) 50%,
+    var(--color-golf-navy) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+    background: var(--color-golf-navy-light);
+  }
 }

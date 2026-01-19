@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, MapPin, Calendar, Users, Trophy } from "lucide-react";
 import type { Metadata } from "next";
+import { Breadcrumb } from "@/components/core";
 
 export const metadata: Metadata = {
   title: "Austin Golf Club - Pete Dye Masterpiece | Austin Golf History",
@@ -30,14 +31,24 @@ export default function AustinGolfClubPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-golf-navy/80 via-golf-navy/40 to-golf-navy" />
         </div>
 
-        {/* Back Button */}
-        <Link
-          href="/"
-          className="absolute top-8 left-8 z-20 flex items-center gap-2 text-golf-cream/80 hover:text-golf-gold transition-colors group"
-        >
-          <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-          <span className="text-sm tracking-wider uppercase">Back to History</span>
-        </Link>
+        {/* Navigation */}
+        <div className="absolute top-8 left-8 z-20 flex flex-col gap-2">
+          <Link
+            href="/clubs"
+            className="flex items-center gap-2 text-golf-cream/80 hover:text-golf-gold transition-colors group focus:outline-none focus-visible:ring-2 focus-visible:ring-golf-gold rounded"
+            aria-label="Back to all clubs"
+          >
+            <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" aria-hidden="true" />
+            <span className="text-sm tracking-wider uppercase">Back to Clubs</span>
+          </Link>
+          <Breadcrumb
+            items={[
+              { label: "Clubs", href: "/clubs" },
+              { label: "Austin Golf Club" },
+            ]}
+            className="hidden md:flex"
+          />
+        </div>
 
         {/* Hero Content */}
         <div className="relative z-10 container mx-auto px-6 text-center">

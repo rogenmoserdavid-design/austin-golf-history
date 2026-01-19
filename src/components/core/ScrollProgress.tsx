@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 export function ScrollProgress() {
   const { scrollYProgress } = useScroll();

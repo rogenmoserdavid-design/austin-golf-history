@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLenis } from "@/hooks/useLenis";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 interface Chapter {
   id: string;
@@ -19,6 +20,7 @@ export function FloatingNav({ chapters }: FloatingNavProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const { scrollTo } = useLenis();
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,6 +56,40 @@ export function FloatingNav({ chapters }: FloatingNavProps) {
     setIsExpanded(false);
   };
 
+  // Simplified static navigation for reduced motion
+  if (prefersReducedMotion) {
+    if (!isVisible) return null;
+
+    return (
+      <nav
+        className="floating-nav hidden md:block"
+        role="navigation"
+        aria-label="Chapter navigation"
+      >
+        <div className="flex flex-col items-end gap-4">
+          {chapters.map((chapter, index) => (
+            <button
+              key={chapter.id}
+              onClick={() => handleNavClick(chapter.id)}
+              className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-golf-gold focus-visible:ring-offset-2 focus-visible:ring-offset-golf-navy rounded-full"
+              aria-label={`Go to ${chapter.title}`}
+              aria-current={activeIndex === index ? "true" : undefined}
+            >
+              <span className="text-sm text-golf-cream/80 whitespace-nowrap bg-golf-navy/90 px-3 py-1 rounded-full backdrop-blur-sm">
+                {chapter.title}
+              </span>
+              <div className="relative">
+                <div
+                  className={`nav-dot ${activeIndex === index ? "active" : ""}`}
+                />
+              </div>
+            </button>
+          ))}
+        </div>
+      </nav>
+    );
+  }
+
   return (
     <AnimatePresence>
       {isVisible && (
@@ -64,15 +100,19 @@ export function FloatingNav({ chapters }: FloatingNavProps) {
           className="floating-nav hidden md:block"
           onMouseEnter={() => setIsExpanded(true)}
           onMouseLeave={() => setIsExpanded(false)}
+          role="navigation"
+          aria-label="Chapter navigation"
         >
           <div className="flex flex-col items-end gap-4">
             {chapters.map((chapter, index) => (
               <motion.button
                 key={chapter.id}
                 onClick={() => handleNavClick(chapter.id)}
-                className="flex items-center gap-3 group"
+                className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-golf-gold focus-visible:ring-offset-2 focus-visible:ring-offset-golf-navy rounded-full"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                aria-label={`Go to ${chapter.title}`}
+                aria-current={activeIndex === index ? "true" : undefined}
               >
                 {/* Label (expanded state) */}
                 <AnimatePresence>

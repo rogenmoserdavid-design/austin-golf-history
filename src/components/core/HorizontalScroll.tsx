@@ -3,6 +3,7 @@
 import { useRef, useEffect, ReactNode } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -21,8 +22,11 @@ export function HorizontalScroll({
 }: HorizontalScrollProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
+    // Skip horizontal scroll animation if user prefers reduced motion
+    if (prefersReducedMotion) return;
     if (!sectionRef.current || !containerRef.current) return;
 
     const container = containerRef.current;
@@ -45,7 +49,24 @@ export function HorizontalScroll({
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [speed]);
+  }, [speed, prefersReducedMotion]);
+
+  // Fallback to native horizontal scroll for reduced motion
+  if (prefersReducedMotion) {
+    return (
+      <div
+        className={`overflow-x-auto ${className}`}
+        style={{
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+        }}
+      >
+        <div className="flex items-center">
+          {children}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div ref={sectionRef} className={`overflow-hidden ${className}`}>

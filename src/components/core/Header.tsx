@@ -56,16 +56,21 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-8" role="navigation" aria-label="Main navigation">
             {/* Chapters Dropdown */}
             <div
               className="relative"
               onMouseEnter={() => setIsChaptersOpen(true)}
               onMouseLeave={() => setIsChaptersOpen(false)}
             >
-              <button className="flex items-center gap-1 text-golf-cream/80 hover:text-golf-gold transition-colors text-sm">
+              <button
+                className="flex items-center gap-1 text-golf-cream/80 hover:text-golf-gold transition-colors text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-golf-gold focus-visible:ring-offset-2 focus-visible:ring-offset-golf-navy rounded"
+                aria-expanded={isChaptersOpen}
+                aria-haspopup="true"
+                aria-label="The Story chapters menu"
+              >
                 The Story
-                <ChevronDown className={`w-4 h-4 transition-transform ${isChaptersOpen ? "rotate-180" : ""}`} />
+                <ChevronDown className={`w-4 h-4 transition-transform ${isChaptersOpen ? "rotate-180" : ""}`} aria-hidden="true" />
               </button>
               <AnimatePresence>
                 {isChaptersOpen && (
@@ -95,9 +100,14 @@ export function Header() {
               onMouseEnter={() => setIsClubsOpen(true)}
               onMouseLeave={() => setIsClubsOpen(false)}
             >
-              <button className="flex items-center gap-1 text-golf-cream/80 hover:text-golf-gold transition-colors text-sm">
+              <button
+                className="flex items-center gap-1 text-golf-cream/80 hover:text-golf-gold transition-colors text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-golf-gold focus-visible:ring-offset-2 focus-visible:ring-offset-golf-navy rounded"
+                aria-expanded={isClubsOpen}
+                aria-haspopup="true"
+                aria-label="The Clubs menu"
+              >
                 The Clubs
-                <ChevronDown className={`w-4 h-4 transition-transform ${isClubsOpen ? "rotate-180" : ""}`} />
+                <ChevronDown className={`w-4 h-4 transition-transform ${isClubsOpen ? "rotate-180" : ""}`} aria-hidden="true" />
               </button>
               <AnimatePresence>
                 {isClubsOpen && (

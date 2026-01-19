@@ -3,6 +3,7 @@
 import { useRef, useEffect, ReactNode } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -23,8 +24,11 @@ export function PinnedSection({
 }: PinnedSectionProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
+    // Skip pinning animations if user prefers reduced motion
+    if (prefersReducedMotion) return;
     if (!wrapperRef.current || !contentRef.current) return;
 
     const ctx = gsap.context(() => {
@@ -41,7 +45,18 @@ export function PinnedSection({
     }, wrapperRef);
 
     return () => ctx.revert();
-  }, [duration, onProgress]);
+  }, [duration, onProgress, prefersReducedMotion]);
+
+  // Simplified layout for reduced motion
+  if (prefersReducedMotion) {
+    return (
+      <div className={className}>
+        <div className="pinned-content">
+          {children}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -69,8 +84,11 @@ export function PinnedReveal({ sections, className = "" }: PinnedRevealProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
+    // Skip complex animations if user prefers reduced motion
+    if (prefersReducedMotion) return;
     if (!wrapperRef.current || !contentRef.current) return;
 
     const ctx = gsap.context(() => {
@@ -127,7 +145,23 @@ export function PinnedReveal({ sections, className = "" }: PinnedRevealProps) {
     }, wrapperRef);
 
     return () => ctx.revert();
-  }, [sections]);
+  }, [sections, prefersReducedMotion]);
+
+  // Simplified layout for reduced motion - show all sections stacked
+  if (prefersReducedMotion) {
+    return (
+      <div className={className}>
+        {sections.map((section, index) => (
+          <div key={index} className="relative min-h-screen flex items-center justify-center">
+            {section.background && (
+              <div className="absolute inset-0 -z-10">{section.background}</div>
+            )}
+            {section.content}
+          </div>
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div

@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ParallaxImage } from "@/components/core/ParallaxImage";
+import { ArrowLeft } from "lucide-react";
+import { ParallaxImage, Breadcrumb } from "@/components/core";
 import {
   AnimatedText,
   SectionHeading,
@@ -11,6 +12,25 @@ import {
 export default function LionsMunicipalPage() {
   return (
     <main className="relative bg-slate-950">
+      {/* Navigation */}
+      <div className="fixed top-6 left-6 z-50 flex flex-col gap-2">
+        <Link
+          href="/clubs"
+          className="flex items-center gap-2 px-4 py-2 bg-slate-900/90 backdrop-blur-sm text-slate-200 rounded-full hover:bg-slate-800 transition-all group focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+          aria-label="Back to all clubs"
+        >
+          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" aria-hidden="true" />
+          <span className="text-sm font-medium">Back to Clubs</span>
+        </Link>
+        <Breadcrumb
+          items={[
+            { label: "Clubs", href: "/clubs" },
+            { label: "Lions Municipal" },
+          ]}
+          className="hidden md:flex bg-slate-900/90 backdrop-blur-sm px-4 py-2 rounded-full"
+        />
+      </div>
+
       {/* Hero Section - Dramatic and Powerful */}
       <section className="relative h-screen">
         <ParallaxImage
@@ -107,12 +127,12 @@ export default function LionsMunicipalPage() {
             Course to all players, regardless of race.
           </BodyText>
 
-          <BodyText className="text-slate-300 text-xl leading-relaxed mb-8">
+          <p className="text-slate-300 text-xl leading-relaxed mb-8">
             This wasn't a small ask. This was 1950s Texas. The American South
             was deeply segregated. Jim Crow laws were the norm. The Supreme
             Court's Brown v. Board of Education decision was still{" "}
             <span className="text-white font-semibold">four years away</span>.
-          </BodyText>
+          </p>
 
           <div className="my-16 py-12 px-8 bg-slate-900/50 border-l-4 border-blue-400">
             <BodyText className="text-blue-300 text-3xl md:text-4xl leading-relaxed font-bold text-center">

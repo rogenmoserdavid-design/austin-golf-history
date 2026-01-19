@@ -1,6 +1,7 @@
 import { ArrowLeft, MapPin, Calendar, Users, Trophy, Flag } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { Breadcrumb } from "@/components/core";
 
 // Metadata
 export const metadata = {
@@ -23,14 +24,24 @@ export const metadata = {
 export default function AustinCountryClubPage() {
   return (
     <div className="min-h-screen bg-golf-cream">
-      {/* Back button */}
-      <Link
-        href="/clubs"
-        className="fixed top-6 left-6 z-50 flex items-center gap-2 px-4 py-2 bg-golf-navy/90 backdrop-blur-sm text-golf-cream rounded-full hover:bg-golf-navy transition-all group"
-      >
-        <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-        <span className="text-sm font-medium">Back to Clubs</span>
-      </Link>
+      {/* Navigation */}
+      <div className="fixed top-6 left-6 z-50 flex flex-col gap-2">
+        <Link
+          href="/clubs"
+          className="flex items-center gap-2 px-4 py-2 bg-golf-navy/90 backdrop-blur-sm text-golf-cream rounded-full hover:bg-golf-navy transition-all group focus:outline-none focus-visible:ring-2 focus-visible:ring-golf-gold"
+          aria-label="Back to all clubs"
+        >
+          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" aria-hidden="true" />
+          <span className="text-sm font-medium">Back to Clubs</span>
+        </Link>
+        <Breadcrumb
+          items={[
+            { label: "Clubs", href: "/clubs" },
+            { label: "Austin Country Club" },
+          ]}
+          className="hidden md:flex bg-golf-navy/90 backdrop-blur-sm px-4 py-2 rounded-full"
+        />
+      </div>
 
       {/* Hero Section */}
       <section className="relative h-screen overflow-hidden">
@@ -81,12 +92,14 @@ export default function AustinCountryClubPage() {
               { icon: Flag, label: "Holes", value: "18" },
               { icon: Trophy, label: "Par", value: "71" },
               { icon: Users, label: "Designer", value: "Pete Dye" },
-            ].map((stat, i) => (
+            ].map((stat) => (
               <div
                 key={stat.label}
-                className="text-center"
+                className="text-center p-6 bg-golf-charcoal/30 rounded-lg border border-golf-gold/10 hover:border-golf-gold/30 transition-colors"
               >
-                <stat.icon className="w-8 h-8 mx-auto mb-3 text-golf-gold" />
+                <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-golf-gold/10 flex items-center justify-center">
+                  <stat.icon className="w-7 h-7 text-golf-gold" />
+                </div>
                 <p className="text-3xl font-playfair font-bold text-golf-cream mb-1">
                   {stat.value}
                 </p>
