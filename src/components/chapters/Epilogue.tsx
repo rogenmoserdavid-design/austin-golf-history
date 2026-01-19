@@ -18,7 +18,7 @@ export function Epilogue() {
       {/* Hero Image - Muny Today */}
       <div className="relative h-screen">
         <ParallaxImage
-          src="/images/eras/epilogue/muny-today.jpg"
+          src="https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=1920&q=80"
           alt="Lions Municipal Golf Course - 100 Years Strong"
           speed={0.4}
           scale={1.15}
@@ -105,7 +105,7 @@ export function Epilogue() {
       {/* Future Image Section */}
       <div className="relative h-[70vh]">
         <ParallaxImage
-          src="/images/eras/epilogue/future.jpg"
+          src="https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1920&q=80"
           alt="The Future of Austin Golf"
           speed={0.3}
           scale={1.2}

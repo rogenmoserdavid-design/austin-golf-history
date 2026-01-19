@@ -15,7 +15,7 @@ export function Era2Teacher() {
       {/* Hero Section - Harvey's Philosophy */}
       <div className="relative h-screen">
         <ParallaxImage
-          src="/images/eras/teacher/penick-teaching.jpg"
+          src="https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1920&q=80"
           alt="Harvey Penick teaching at Austin Country Club"
           speed={0.4}
           overlay={true}
@@ -86,7 +86,7 @@ export function Era2Teacher() {
 
           <div className="relative h-[600px] rounded-lg overflow-hidden shadow-2xl">
             <ParallaxImage
-              src="/images/eras/teacher/penick-teaching.jpg"
+              src="https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1920&q=80"
               alt="Harvey Penick instructing a student"
               speed={0.2}
               overlay={true}
@@ -101,7 +101,7 @@ export function Era2Teacher() {
       <PinnedSection duration={2} className="py-24">
         <div className="relative min-h-screen flex items-center">
           <ParallaxImage
-            src="/images/eras/teacher/little-red-book.jpg"
+            src="https://images.unsplash.com/photo-1591491653056-4e9d563a42de?w=1920&q=80"
             alt="Harvey Penick's Little Red Book"
             speed={0.3}
             overlay={true}

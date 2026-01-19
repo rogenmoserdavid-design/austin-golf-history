@@ -15,7 +15,7 @@ export function Prologue() {
       {/* Hero - Full viewport parallax opening */}
       <div className="relative h-screen w-full overflow-hidden">
         <ParallaxImage
-          src="/images/eras/prologue/hero.jpg"
+          src="https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=1920&q=80"
           alt="Texas Hill Country landscape before golf arrived"
           speed={0.5}
           scale={1.3}
@@ -23,6 +23,7 @@ export function Prologue() {
           overlay={true}
           overlayOpacity={0.5}
           priority={true}
+          unoptimized={true}
           className="absolute inset-0"
         />
 

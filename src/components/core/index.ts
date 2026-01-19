@@ -15,3 +15,4 @@ export {
   SnapScroll,
   HorizontalProgress,
 } from "./HorizontalScroll";
+export { Header } from "./Header";

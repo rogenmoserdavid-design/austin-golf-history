@@ -20,7 +20,7 @@ export function Era3Breakthrough() {
       {/* Hero Image - Dark and Powerful */}
       <div className="relative h-screen">
         <ParallaxImage
-          src="/images/eras/breakthrough/muny-historic.jpg"
+          src="https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=1920&q=80"
           alt="Lions Municipal Golf Course historic view"
           speed={0.5}
           overlay={true}
@@ -66,7 +66,7 @@ export function Era3Breakthrough() {
             ),
             background: (
               <ParallaxImage
-                src="/images/eras/breakthrough/desegregation.jpg"
+                src="https://images.unsplash.com/photo-1592919505780-303950717480?w=1920&q=80"
                 alt="Civil rights era"
                 speed={0.2}
                 overlay={true}
@@ -92,7 +92,7 @@ export function Era3Breakthrough() {
             ),
             background: (
               <ParallaxImage
-                src="/images/eras/breakthrough/muny-historic.jpg"
+                src="https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=1920&q=80"
                 alt="Historic Muny"
                 speed={0.2}
                 overlay={true}
@@ -117,7 +117,7 @@ export function Era3Breakthrough() {
             ),
             background: (
               <ParallaxImage
-                src="/images/eras/breakthrough/muny-historic.jpg"
+                src="https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=1920&q=80"
                 alt="Muny historic view"
                 speed={0.2}
                 overlay={true}
@@ -143,7 +143,7 @@ export function Era3Breakthrough() {
             ),
             background: (
               <ParallaxImage
-                src="/images/eras/breakthrough/desegregation.jpg"
+                src="https://images.unsplash.com/photo-1592919505780-303950717480?w=1920&q=80"
                 alt="Symbol of progress"
                 speed={0.2}
                 overlay={true}
@@ -315,7 +315,7 @@ export function Era3Breakthrough() {
       {/* Closing Image */}
       <div className="relative h-[60vh]">
         <ParallaxImage
-          src="/images/eras/breakthrough/muny-historic.jpg"
+          src="https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=1920&q=80"
           alt="Lions Municipal Golf Course - A Symbol of Progress"
           speed={0.3}
           overlay={true}

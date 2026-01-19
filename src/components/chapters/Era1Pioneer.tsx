@@ -14,7 +14,7 @@ export function Era1Pioneer() {
       {/* Opening: Lewis Hancock's Vision */}
       <div className="relative min-h-screen flex items-center">
         <ParallaxImage
-          src="/images/eras/pioneer/hancock.jpg"
+          src="https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?w=1920&q=80"
           alt="Lewis Hancock and the founding of Austin Country Club"
           speed={0.5}
           kenBurns={true}
@@ -46,7 +46,7 @@ export function Era1Pioneer() {
       <PinnedSection duration={2}>
         <div className="relative min-h-screen flex items-center">
           <ParallaxImage
-            src="/images/eras/pioneer/early-acc.jpg"
+            src="https://images.unsplash.com/photo-1592919505780-303950717480?w=1920&q=80"
             alt="Early Austin Country Club"
             speed={0.3}
             kenBurns={true}
@@ -75,7 +75,7 @@ export function Era1Pioneer() {
       {/* Harvey Penick's Beginning */}
       <div className="relative min-h-screen flex items-center">
         <ParallaxImage
-          src="/images/eras/pioneer/young-penick.jpg"
+          src="https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1920&q=80"
           alt="Young Harvey Penick as a caddie"
           speed={0.5}
           kenBurns={true}
@@ -113,7 +113,7 @@ export function Era1Pioneer() {
       <PinnedSection duration={2}>
         <div className="relative min-h-screen flex items-center">
           <ParallaxImage
-            src="/images/eras/pioneer/early-golfers.jpg"
+            src="https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=1920&q=80"
             alt="Early Austin golfers"
             speed={0.3}
             kenBurns={true}

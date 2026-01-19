@@ -24,7 +24,7 @@ const courses: Course[] = [
     name: "Austin Golf Club",
     subtitle: "Pete Dye Masterpiece",
     description: "When Austin Golf Club opened in 1984, it brought championship-caliber golf to the Hill Country. Pete Dye's strategic design became an instant classic, challenging the best players while remaining enjoyable for members.",
-    image: "/images/eras/renaissance/austin-golf-club.jpg",
+    image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=1920&q=80",
     details: {
       opened: "1984",
       designer: "Pete Dye",
@@ -36,7 +36,7 @@ const courses: Course[] = [
     name: "Spanish Oaks Golf Club",
     subtitle: "Natural Perfection",
     description: "Bobby Weed's design philosophy shines at Spanish Oaks, where the course flows naturally through dramatic Hill Country terrain. Each hole offers breathtaking views while demanding thoughtful shot-making.",
-    image: "/images/eras/renaissance/spanish-oaks.jpg",
+    image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1920&q=80",
     details: {
       designer: "Bobby Weed",
       type: "Private",
@@ -47,7 +47,7 @@ const courses: Course[] = [
     name: "Driftwood Golf Club",
     subtitle: "Hill Country Gem",
     description: "Set in the picturesque Texas Hill Country, Driftwood offers an accessible yet challenging experience. The semi-private club provides a taste of championship golf with stunning natural beauty at every turn.",
-    image: "/images/eras/renaissance/driftwood.jpg",
+    image: "https://images.unsplash.com/photo-1592919505780-303950717480?w=1920&q=80",
     details: {
       type: "Semi-Private",
       notable: "Named for the historic Driftwood community"
@@ -57,7 +57,7 @@ const courses: Course[] = [
     name: "Barton Creek Resort",
     subtitle: "Four Signature Courses",
     description: "Barton Creek's collection of four championship courses, including the renowned Fazio Foothills, established Austin as a true golf destination. Each layout offers unique challenges and showcases the region's natural beauty.",
-    image: "/images/eras/renaissance/barton-creek.jpg",
+    image: "https://images.unsplash.com/photo-1591491653056-4e9d563a42de?w=1920&q=80",
     details: {
       designer: "Tom Fazio, Arnold Palmer, Ben Crenshaw",
       type: "Resort",

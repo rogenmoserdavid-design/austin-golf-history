@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
+import { Header } from "@/components/core/Header";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -30,12 +31,24 @@ export const metadata: Metadata = {
     "Hill Country golf",
   ],
   authors: [{ name: "Mackenzie Club" }],
+  icons: {
+    icon: "/favicon.svg",
+    apple: "/apple-touch-icon.png",
+  },
   openGraph: {
     title: "The History of Austin Golf | 125 Years of Legacy",
     description:
       "An immersive journey through 125 years of Austin golf history.",
     url: "https://history.mackenzieclub.com",
     siteName: "The History of Austin Golf",
+    images: [
+      {
+        url: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=1200&h=630&q=80",
+        width: 1200,
+        height: 630,
+        alt: "Austin Golf History - Texas Hill Country",
+      },
+    ],
     locale: "en_US",
     type: "website",
   },
@@ -44,6 +57,7 @@ export const metadata: Metadata = {
     title: "The History of Austin Golf",
     description:
       "An immersive journey through 125 years of Austin golf history.",
+    images: ["https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=1200&h=630&q=80"],
   },
   robots: {
     index: true,
@@ -58,7 +72,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }

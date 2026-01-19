@@ -14,7 +14,7 @@ export function Era4Champions() {
       {/* Hero Image - Crenshaw's Emotional Victory */}
       <div className="relative h-screen">
         <ParallaxImage
-          src="/images/eras/champions/crenshaw-masters.jpg"
+          src="https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1920&q=80"
           alt="Ben Crenshaw's emotional 1995 Masters victory"
           speed={0.5}
           overlay={true}
@@ -64,7 +64,7 @@ export function Era4Champions() {
       <PinnedSection duration={2}>
         <div className="relative min-h-screen flex items-center">
           <ParallaxImage
-            src="/images/eras/champions/kite-usopen.jpg"
+            src="https://images.unsplash.com/photo-1591491653056-4e9d563a42de?w=1920&q=80"
             alt="Tom Kite winning the 1992 US Open"
             speed={0.3}
             overlay={true}
@@ -151,7 +151,7 @@ export function Era4Champions() {
           <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
             <div className="relative h-[400px] rounded-lg overflow-hidden shadow-2xl">
               <ParallaxImage
-                src="/images/eras/champions/penick-crenshaw.jpg"
+                src="https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?w=1920&q=80"
                 alt="Harvey Penick and Ben Crenshaw"
                 speed={0.2}
                 overlay={true}
@@ -248,7 +248,7 @@ export function Era4Champions() {
       {/* Closing Image */}
       <div className="relative h-96">
         <ParallaxImage
-          src="/images/eras/champions/crenshaw-masters.jpg"
+          src="https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1920&q=80"
           alt="Champions forever"
           speed={0.3}
           overlay={true}
